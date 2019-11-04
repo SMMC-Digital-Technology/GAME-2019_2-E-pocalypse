@@ -6,6 +6,7 @@ var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'theGame', {
 var boss;
 var slime;
 var stacked slime;
+var skeleton
 var player;
 var up;
 var down;
