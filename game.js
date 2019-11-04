@@ -7,6 +7,7 @@ var ground;
 var boss;
 var slime;
 var stacked slime;
+var skeleton
 var player;
 var up;
 var down;
@@ -58,6 +59,11 @@ function create() {
 
   //Phaser built in Keyboard manager
   cursors = game.input.keyboard.createCursorKeys();
+}
+
+function update() {
+  //collide the player and the stars with the platforms
+
 
   //reset the players velocity (movement)
   player.body.velocity.x = 0;
@@ -102,12 +108,9 @@ function collectHealth(player, healthPickup) {
     health += 1;
   }
 }
-}
 
 function showHealthPickup() {
   if (healthPickup.tween.isPaused) {
     healthPickup.tween.start();
   }
 }
-
-function update() {
