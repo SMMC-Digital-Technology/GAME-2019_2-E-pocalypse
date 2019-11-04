@@ -14,8 +14,6 @@ var left;
 var right;
 
 
-
-
 function preload() {
   game.load.image('/.png');
   game.load.image('/.png');
@@ -61,8 +59,6 @@ function create() {
 }
 
 function update() {
-  //collide the player and the stars with the platforms
-
 
   //reset the players velocity (movement)
   player.body.velocity.x = 0;
