@@ -3,6 +3,7 @@ var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'theGame', {
   create: create,
   update: update
 });
+var ground;
 var boss;
 var slime;
 var stacked slime;
@@ -16,11 +17,11 @@ var right;
 
 
 function preload() {
-  game.load.image('/.png');
-  game.load.image('/.png');
-  game.load.image('/.png');
-  game.load.image('/.png');
-
+  game.load.image('''/.png');
+  game.load.image('''/.png');
+  game.load.image('''/.png');
+  game.load.image('''/.png');
+  game.load.sprite('','/.png', 32,48);
 }
 
 function create() {
@@ -57,11 +58,6 @@ function create() {
 
   //Phaser built in Keyboard manager
   cursors = game.input.keyboard.createCursorKeys();
-}
-
-function update() {
-  //collide the player and the stars with the platforms
-  var hitPlatform = game.physics.arcade.collide(player, platforms);
 
   //reset the players velocity (movement)
   player.body.velocity.x = 0;
@@ -81,6 +77,37 @@ function update() {
       player.frame = 4;
     }
     //allow the player to jump if they are touching the background
-    if (cursors.up.isDown && player.body.touching.down && hitPlatform)
+    if (cursors.up.isDown && player.body.touching.down && hitPlatform) {
+      player.body.velocity.y = -350;
+
+    }
   }
 }
+
+function removeHealth(player, slime) {
+  health -= 1;
+  healthIcons[health] alpha = 0;
+  player.body.velocity.x = -player.body.velocity.x;
+  player.body.velocity.y = -150;
+  if (health == 0) {
+    game.state.restart();
+  }
+}
+
+function collectHealth(player, healthPickup) {
+  if (healthPickup.alpha > 0.8) {
+    healthPickup.tween.pause();
+    healthPickup.alpha = 0;
+    healthIcons[health].alpha = 1;
+    health += 1;
+  }
+}
+}
+
+function showHealthPickup() {
+  if (healthPickup.tween.isPaused) {
+    healthPickup.tween.start();
+  }
+}
+
+function update() {
