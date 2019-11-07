@@ -1,33 +1,33 @@
-var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'theGame', {
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'theGame', {
   preload: preload,
   create: create,
   update: update
 });
-var ground;
-var boss;
-var slime;
-var stacked slime;
-var skeleton
+var background;
 var player;
-var up;
-var down;
-var left;
-var right;
-
 
 function preload() {
-  game.load.image('''/.png');
-  game.load.image('''/.png');
-  game.load.image('''/.png');
-  game.load.image('''/.png');
-  game.load.sprite('','/.png', 32,48);
+
+  game.load.image('background', 'assets/background.png');
+  game.load.spritesheet('', '/.png');
+  game.load.spritesheet('', '/.png');
+  game.load.spritesheet('', '/.png');
+  game.load.spritesheet('player', 'assets/player.png', 32, 48);
 }
 
 function create() {
-  game.add.image('/.png');
+
+  game.add.image('assets/background.png');
   game.add.sprite('/.png');
   game.add.spritesheet('/.png');
-  game.add.spritesheet('/.png');
+  game.add.spritesheet('assets/player.png');
+
+  //this is text for the game, not sure if this will work or not
+  title = game.add.text(game.world.centerX, game.world.centerY - 100, 'E-pocalypse', {
+    font: '50px Arial',
+    fill: '#00ff00'
+  });
+  title.anchor.setTo(0.5, 0.5);
 
   //we're going to be using physics, so enable the Arcade Physics system
   game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -57,9 +57,25 @@ function create() {
 
   //Phaser built in Keyboard manager
   cursors = game.input.keyboard.createCursorKeys();
+
+  //begin game button
+  button = game.add.button(game.world.centerX, game.world.centerY, 'button');
+  button.anchor.setTo(0.5, 0.5);
+  button.onInputUp.add(myFunction);
+  var text = game.add.text(button.z, button.y, 'Begining');
+  text.anchor.setTo(0.5, 0.5);
+
+// for when people attack the thing they're attacking with will launch like a bullet
+weapon.bulletKillType = Phaser.weapon.KILL_WORLD_BOUNDS;
+weapon.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
+weapon.bulletSpeed = 200;
+weapon.fireRate = 500;
+
 }
 
 function update() {
+  //collide the player and the stars with the platforms
+
 
   //reset the players velocity (movement)
   player.body.velocity.x = 0;
@@ -84,29 +100,34 @@ function update() {
 
     }
   }
-}
 
-function removeHealth(player, slime) {
-  health -= 1;
-  healthIcons[health] alpha = 0;
-  player.body.velocity.x = -player.body.velocity.x;
-  player.body.velocity.y = -150;
-  if (health == 0) {
-    game.state.restart();
+
+  function removeHealth(player, slime) {
+    health -= 1;
+    healthIcons[health] alpha = 0;
+    player.body.velocity.x = -player.body.velocity.x;
+    player.body.velocity.y = -150;
+    if (health == 0) {
+      game.state.restart();
+    }
   }
-}
 
-function collectHealth(player, healthPickup) {
-  if (healthPickup.alpha > 0.8) {
-    healthPickup.tween.pause();
-    healthPickup.alpha = 0;
-    healthIcons[health].alpha = 1;
-    health += 1;
+  function collectHealth(player, healthPickup) {
+    if (healthPickup.alpha > 0.8) {
+      healthPickup.tween.pause();
+      healthPickup.alpha = 0;
+      healthIcons[health].alpha = 1;
+      health += 1;
+    }
   }
-}
 
-function showHealthPickup() {
-  if (healthPickup.tween.isPaused) {
-    healthPickup.tween.start();
+  function showHealthPickup() {
+    if (healthPickup.tween.isPaused) {
+      healthPickup.tween.start();
+    }
+  }
+
+  function myFunction() {
+if
   }
 }
