@@ -5,6 +5,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'theGame', {
 });
 var background;
 var player;
+var evilteacher
 
 function preload() {
 
@@ -62,21 +63,18 @@ function create() {
   button = game.add.button(game.world.centerX, game.world.centerY, 'button');
   button.anchor.setTo(0.5, 0.5);
   button.onInputUp.add(myFunction);
-  var text = game.add.text(button.z, button.y, 'Begining');
+  var text = game.add.text(button.z, button.y, 'Beginning');
   text.anchor.setTo(0.5, 0.5);
 
 // for when people attack the thing they're attacking with will launch like a bullet
-weapon.bulletKillType = Phaser.weapon.KILL_WORLD_BOUNDS;
-weapon.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
-weapon.bulletSpeed = 200;
-weapon.fireRate = 500;
+  weapon.bulletKillType = Phaser.weapon.KILL_WORLD_BOUNDS;
+  weapon.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
+  weapon.bulletSpeed = 200;
+  weapon.fireRate = 500;
 
 }
 
 function update() {
-  //collide the player and the stars with the platforms
-
-
   //reset the players velocity (movement)
   player.body.velocity.x = 0;
 
@@ -100,7 +98,6 @@ function update() {
 
     }
   }
-
 
   function removeHealth(player, slime) {
     health -= 1;
