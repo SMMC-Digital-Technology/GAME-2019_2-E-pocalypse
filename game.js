@@ -97,7 +97,7 @@ function update() {
     }
   }
 
-  function removeHealth(player, slime) {
+  function removeHealth(player, EvilTeacher) {
     health -= 1;
     healthIcons[health] alpha = 0;
     player.body.velocity.x = -player.body.velocity.x;
