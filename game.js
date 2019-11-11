@@ -44,7 +44,7 @@ function create() {
   //this stops it from falling away when you jump on it
   ground.body.immovable = true;
 
-  var player();
+  var player;
   //the player and it's settings
   player = game.add.sprite(32, game.world.height - 150);
   //we need to enable physics on the player
