@@ -70,7 +70,6 @@ function create() {
   weapon.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
   weapon.bulletSpeed = 200;
   weapon.fireRate = 500;
-
 }
 
 function update() {
