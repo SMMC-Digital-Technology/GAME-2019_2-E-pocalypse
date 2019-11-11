@@ -5,7 +5,8 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'theGame', {
 });
 var background;
 var player;
-var evilteacher
+var evilteacher;
+var healthIcons
 
 function preload() {
 
@@ -93,7 +94,6 @@ function update() {
     //allow the player to jump if they are touching the background
     if (cursors.up.isDown && player.body.touching.down && hitPlatform) {
       player.body.velocity.y = -350;
-
     }
   }
 
