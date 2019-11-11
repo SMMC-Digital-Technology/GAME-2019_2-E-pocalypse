@@ -18,8 +18,8 @@ function preload() {
 function create() {
 
   game.add.image('assets/background.png');
-  game.add.sprite('/.png');
-  game.add.spritesheet('/.png');
+  game.add.image('assets/ground.png');
+  game.add.spritesheet('assets/EvilTeacher.png');
   game.add.spritesheet('assets/player.png');
 
   //this is text for the game, not sure if this will work or not
