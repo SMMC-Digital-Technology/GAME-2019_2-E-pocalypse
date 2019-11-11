@@ -10,8 +10,7 @@ var evilteacher
 function preload() {
 
   game.load.image('background', 'assets/background.png');
-  game.load.spritesheet('', '/.png');
-  game.load.spritesheet('', '/.png');
+  game.load.image('ground', 'assets/ground.png');
   game.load.spritesheet('EvilTeacher', 'assets/EvilTeacher.png');
   game.load.spritesheet('player', 'assets/player.png', 32, 48);
 }
