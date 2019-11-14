@@ -13,7 +13,7 @@ function preload() {
   game.load.image('background', 'assets/background.png');
   game.load.image('ground', 'assets/ground.png');
   game.load.spritesheet('EvilTeacher', 'assets/EvilTeacher.png');
-  game.load.spritesheet('player', 'assets/player.png', 32, 48);
+  game.load.spritesheet('player', 'assets/player.png');
 }
 
 function create() {
