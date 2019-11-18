@@ -7,6 +7,7 @@ var background;
 var player;
 var evilteacher;
 var healthIcons
+var health
 
 function preload() {
 
