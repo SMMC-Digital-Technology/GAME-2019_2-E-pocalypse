@@ -101,7 +101,7 @@ function update() {
 
   function removeHealth(player, EvilTeacher) {
     health -= 1;
-    healthIcons[health] alpha = 0;
+    healthIcons[health].alpha = 0;
     player.body.velocity.x = -player.body.velocity.x;
     player.body.velocity.y = -150;
     if (health == 0) {
@@ -123,8 +123,3 @@ function update() {
       healthPickup.tween.start();
     }
   }
-
-  function myFunction() {
-if
-  }
-}
