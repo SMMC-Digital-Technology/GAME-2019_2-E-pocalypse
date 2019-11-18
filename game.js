@@ -1,7 +1,7 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'theGame', {
+var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'theGame', {
   preload: preload,
   create: create,
-  update: update
+  update: update,
 });
 var background;
 var player;
@@ -16,7 +16,8 @@ function preload() {
 
   game.load.image('background', 'assets/background.png');
   game.load.image('ground', 'assets/ground.png');
-  game.load.spritesheet('EvilTeacher', 'assets/EvilTeacher.png');
+  game.load.image('health', 'assets/health.png');
+  game.load.spritesheet('evilTeacher', 'assets/EvilTeacher.png');
   game.load.spritesheet('player', 'assets/player.png');
 }
 
@@ -57,8 +58,8 @@ function create() {
   //player physics properites. Give the little guy a slight bounce
   player.body.collideWorldBounds = true;
   //our two animations, walking left and right.
-  player.animations.add('left', [, , ], 10, true);
-  player.animations.add('right', [, , ], 10, true);
+  player.animations.add('left', [0, 1, ], 10, true);
+  player.animations.add('right', [3,4, ], 10, true);
 
   //Phaser built in Keyboard manager
   cursors = game.input.keyboard.createCursorKeys();
@@ -107,7 +108,7 @@ function update() {
     {
       //stand still
       player.animations.stop();
-      player.frame = 4;
+      player.frame = 2;
     }
     //allow the player to jump if they are touching the background
     if (cursors.up.isDown && player.body.touching.down && hitPlatform) {
@@ -115,7 +116,7 @@ function update() {
     }
   }
 
-  function removeHealth(player, EvilTeacher) {
+  function removeHealth(player, evilTeacher) {
     health -= 1;
     healthIcons[health].alpha = 0;
     player.body.velocity.x = -player.body.velocity.x;
@@ -139,5 +140,4 @@ function update() {
       healthPickup.tween.start();
     }
   }
-}
-}
+}}
