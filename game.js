@@ -3,9 +3,10 @@ var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'theGame', {
   create: create,
   update: update,
 });
-var background;
+
 var player;
 var evilteacher;
+var background;
 
 var MAX_HEALTH = 3;
 var health = MAX_HEALTH;
@@ -58,8 +59,8 @@ function create() {
   //player physics properites. Give the little guy a slight bounce
   player.body.collideWorldBounds = true;
   //our two animations, walking left and right.
-  player.animations.add('left', [0, 1, ], 10, true);
-  player.animations.add('right', [3,4, ], 10, true);
+  player.animations.add('left', [0, 1,], 10, true);
+  player.animations.add('right', [3, 4,], 10, true);
 
   //Phaser built in Keyboard manager
   cursors = game.input.keyboard.createCursorKeys();
@@ -140,4 +141,4 @@ function update() {
       healthPickup.tween.start();
     }
   }
-}}
+}
