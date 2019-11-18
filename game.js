@@ -6,9 +6,11 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'theGame', {
 var background;
 var player;
 var evilteacher;
-var healthIcons
-var health
-var healthPickup
+
+var MAX_HEALTH = 3;
+var health = MAX_HEALTH;
+var healthIcons = [];
+var healthPickup;
 
 function preload() {
 
@@ -73,9 +75,23 @@ function create() {
   weapon.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
   weapon.bulletSpeed = 200;
   weapon.fireRate = 500;
+
+  healthPickup = game.add.sprite(700, 500, "health");
+  game.physics.arcade.enable(healthPickup);
+  healthPickup.alpha = 0;
+  healthPickup.tween = game.add.tween(healthPickup).to({
+     alpha: 1
+  }, 1500, Phaser.Easing.Sinusoidal.InOut, true, 0, 1500, true);
+  game.time.events.loop(15000, showHealthPickup, this);
+
+  health = MAX_HEALTH;
+  for (var i = 0; i < MAX_HEALTH; i++) {
+     healthIcons[i] = game.add.sprite(game.world.width - 48 * (i + 1), 16, "health");
 }
 
 function update() {
+  game.physics.arcade.overlap(player, healthPickup, collectHealth, null, this);
+
   //reset the players velocity (movement)
   player.body.velocity.x = 0;
 
@@ -123,3 +139,5 @@ function update() {
       healthPickup.tween.start();
     }
   }
+}
+}
