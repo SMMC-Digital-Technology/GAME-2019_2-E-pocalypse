@@ -8,6 +8,7 @@ var player;
 var evilteacher;
 var healthIcons
 var health
+var healthPickup
 
 function preload() {
 
