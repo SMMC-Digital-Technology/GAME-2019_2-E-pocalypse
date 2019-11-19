@@ -1,9 +1,9 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'theGame', {
+var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'theGame', {
   preload: preload,
   create: create,
   update: update,
 });
-var background;
+
 var player;
 
 
@@ -77,7 +77,7 @@ function update() {
     {
       //stand still
       player.animations.stop();
-      player.frame = 4;
+      player.frame = 2;
     }
     //allow the player to jump if they are touching the background
     if (cursors.up.isDown && player.body.touching.down && hitPlatform) {
