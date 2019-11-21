@@ -10,7 +10,7 @@ function preload() {
 
   game.load.image('background', 'assets/background.png');
   game.load.image('ground', 'assets/ground.png');
-  game.load.spritesheet('playerWalking', 'assets/PlayerWalking.png', 32, 48);
+  game.load.spritesheet('playerWalking', 'assets/PlayerWalking.png',);
   game.load.spritesheet('playerFighting', 'assets/playerFighting.png');
   game.load.spritesheet('TeacherWalking', 'assets/TeacherWalking.png');
   game.load.spritesheet('TeacherThrowing', 'assets/TeacherThrowing.png');
