@@ -18,13 +18,6 @@ function preload() {
 }
 
 function create() {
-  //this is text for the game, not sure if this will work or not
-  title = game.add.text(game.world.centerX, game.world.centerY - 100, 'E-pocalypse', {
-    font: '50px Arial',
-    fill: '#00ff00'
-  });
-  title.anchor.setTo(0.5, 0.5);
-
   //we're going to be using physics, so enable the Arcade Physics system
   game.physics.startSystem(Phaser.Physics.ARCADE);
   // a simple background for the game
@@ -45,8 +38,6 @@ function create() {
 }
 
 function update() {
-  //reset the players velocity (movement)
-  player.body.velocity.x = 0;
 
   if (cursors.left.isDown) {
     //Move to the left
@@ -60,7 +51,6 @@ function update() {
     {
       //stand still
       player.animations.stop();
-      player.frame = 2;
     }
     //allow the player to jump if they are touching the background
     if (cursors.up.isDown && player.body.touching.down && hitPlatform) {
