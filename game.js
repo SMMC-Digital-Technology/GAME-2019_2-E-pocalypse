@@ -6,7 +6,6 @@ var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'theGame', {
 
 var player;
 
-
 function preload() {
 
   game.load.image('background', 'assets/background.png');
@@ -16,16 +15,9 @@ function preload() {
   game.load.spritesheet('TeacherWalking', 'assets/TeacherWalking.png');
   game.load.spritesheet('TeacherThrowing', 'assets/TeacherThrowing.png');
   game.load.image('Paper', 'assets/Paper.png');
-
-
-
 }
 
 function create() {
-
-  game.add.image('assets/background.png');
-  game.add.sprite('assets/player.png');
-
   //this is text for the game, not sure if this will work or not
   title = game.add.text(game.world.centerX, game.world.centerY - 100, 'E-pocalypse', {
     font: '50px Arial',
@@ -50,26 +42,9 @@ function create() {
 
   //Phaser built in Keyboard manager
   cursors = game.input.keyboard.createCursorKeys();
-
-  //begin game button
-  button = game.add.button(game.world.centerX, game.world.centerY, 'button');
-  button.anchor.setTo(0.5, 0.5);
-  button.onInputUp.add(myFunction);
-  var text = game.add.text(button.z, button.y, 'Begining');
-  text.anchor.setTo(0.5, 0.5);
-
-  // for when people attack the thing they're attacking with will launch like a bullet
-  weapon.bulletKillType = Phaser.weapon.KILL_WORLD_BOUNDS;
-  weapon.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
-  weapon.bulletSpeed = 200;
-  weapon.fireRate = 500;
-
 }
 
 function update() {
-  //collide the player and the stars with the platforms
-
-
   //reset the players velocity (movement)
   player.body.velocity.x = 0;
 
