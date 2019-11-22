@@ -82,6 +82,17 @@ function update() {
 
     }
   }
-
   game.physics.arcade.overlap(player, healthPickup, collectHealth, null, this);
+
+  function removeHealth(player, teacher) {
+    health -= 1;
+    healthIcons[health].alpha = 0;
+    player.body.velocity.x = -player.body.velocity.x;
+    player.body.velocity.y = -150;
+    if (health == 0) {
+      game.state.restart();
+    }
+  }
+
+  
 }
