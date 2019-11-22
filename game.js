@@ -5,7 +5,12 @@ var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'theGame', {
 });
 
 var player;
-var ground;+
+var ground;
+
+var MAX_HEALTH = 3;
+var health = MAX_HEALTH;
+var healthIcons = [];
+var healthPickup;
 
 function preload() {
 
@@ -16,6 +21,7 @@ function preload() {
   game.load.spritesheet('TeacherWalking', 'assets/TeacherWalking.png', 64, 128);
   game.load.spritesheet('TeacherThrowing', 'assets/TeacherThrowing.png', 64, 128);
   game.load.image('Paper', 'assets/Paper.png');
+  game.load.image('health', 'assets/Health.png');
 }
 
 function create() {
@@ -35,11 +41,26 @@ function create() {
   player.animations.add('left', [0, 1], 10, true);
   player.animations.add('right', [3, 4], 10, true);
 
-  //Phaser built in Keyboard manager
+  healthPickup = game.add.sprite(700, 500, 'health');
+  game.physics.arcade.enable(healthPickup);
+  healthPickup.alpha = 0;
+  healthPickup.tween = game.add.tween(healthPickup).to({
+    alpha: 1
+  }, 1500, Phaser.Easing.Sinusoidal.InOut, true, 0, 1500, true);
+  game.time.events.loop(15000, showHealthPickup, this);
+
+  health = MAX_HEALTH;
+  for (var i = 0; i < MAX_HEALTH; i++) {
+    healthIcons[i] = game.add.sprite(game.world.width - 48 * (i + 1), 16, 'health');
+  }
+
   cursors = game.input.keyboard.createCursorKeys();
 }
 
 function update() {
+  var hitGround = game.physics.arcade.collide(player, ground);
+
+  player.body.velocity.x = 0;
 
   if (cursors.left.isDown) {
     //Move to the left
@@ -53,6 +74,7 @@ function update() {
     {
       //stand still
       player.animations.stop();
+      player.frame = 4;
     }
     //allow the player to jump if they are touching the background
     if (cursors.up.isDown && player.body.touching.down && hitPlatform) {
@@ -61,20 +83,5 @@ function update() {
     }
   }
 
-  function collectHealth(player, healthPickup) {
-    if (healthPickup.alpha > 0.8) {
-      healthPickup.tween.pause();
-      healthPickup.alpha = 0;
-      healthIcons[health].alpha = 1;
-      health += 1;
-    }
-  }
-
-  function showHealthPickup() {
-    if (healthPickup.tween.isPaused) {
-      healthPickup.tween.start();
-    }
-  }
-
-
+  game.physics.arcade.overlap(player, healthPickup, collectHealth, null, this);
 }
