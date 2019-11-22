@@ -5,6 +5,7 @@ var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'theGame', {
 });
 
 var player;
+var ground;
 
 function preload() {
 
@@ -27,11 +28,13 @@ function create() {
   //we will enable physics for any object that is created in this group
   platforms.enableBody = true;
   //here we create the ground
-  var ground = platforms.create(0, game.world.height - 64, 'ground');
-  //scale it to fit the width of the game
-  ground.scale.setTo(2, 2);
+  var ground = platforms.create(0, game.world.height - 84, 'ground');
   //this stops it from falling away when you jump on it
   ground.body.immovable = true;
+  var ledge = platforms.create(400, 400, 'ground');
+  ledge.body.immovable = true;
+  ledge = platforms.create(-150, 250, 'ground');
+  ledge.body.immovable = true;
 
   //Phaser built in Keyboard manager
   cursors = game.input.keyboard.createCursorKeys();
