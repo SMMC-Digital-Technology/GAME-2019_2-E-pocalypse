@@ -5,15 +5,16 @@ var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'theGame', {
 });
 
 var player;
+var ground;+
 
 function preload() {
 
   game.load.image('background', 'assets/background.png');
   game.load.image('ground', 'assets/ground.png');
-  game.load.spritesheet('playerWalking', 'assets/PlayerWalking.png', 320, 128);
-  game.load.spritesheet('playerFighting', 'assets/playerFighting.png', 576, 128);
-  game.load.spritesheet('TeacherWalking', 'assets/TeacherWalking.png', 320, 128);
-  game.load.spritesheet('TeacherThrowing', 'assets/TeacherThrowing.png', 512, 128);
+  game.load.spritesheet('playerWalking', 'assets/PlayerWalking.png', 64, 128);
+  game.load.spritesheet('playerFighting', 'assets/playerFighting.png', 64, 128);
+  game.load.spritesheet('TeacherWalking', 'assets/TeacherWalking.png', 64, 128);
+  game.load.spritesheet('TeacherThrowing', 'assets/TeacherThrowing.png', 64, 128);
   game.load.image('Paper', 'assets/Paper.png');
 }
 
@@ -22,16 +23,17 @@ function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
   // a simple background for the game
   game.add.sprite(0, 0, 'background');
-  //the platforms group contains the ground and the 2 ledges we can jump on
-  platforms = game.add.group();
-  //we will enable physics for any object that is created in this group
-  platforms.enableBody = true;
-  //here we create the ground
-  var ground = platforms.create(0, game.world.height - 64, 'ground');
-  //scale it to fit the width of the game
-  ground.scale.setTo(2, 2);
-  //this stops it from falling away when you jump on it
+  ground = game.add.sprite(600, 0, 'ground');
   ground.body.immovable = true;
+
+  player = game.add.sprite(64, game.world.height - 150, 'player');
+  game.physics.arcade.enbale(player);
+  player.body.bounce.y - 0.2;
+  player.body.gravity.y - 300;
+  player.body.collideWorldBounds = true;
+
+  player.animations.add('left', [0, 1], 10, true);
+  player.animations.add('right', [3, 4], 10, true);
 
   //Phaser built in Keyboard manager
   cursors = game.input.keyboard.createCursorKeys();
