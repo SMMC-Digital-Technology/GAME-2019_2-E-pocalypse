@@ -10,10 +10,10 @@ function preload() {
 
   game.load.image('background', 'assets/background.png');
   game.load.image('ground', 'assets/ground.png');
-  game.load.spritesheet('playerWalking', 'assets/PlayerWalking.png',);
-  game.load.spritesheet('playerFighting', 'assets/playerFighting.png');
-  game.load.spritesheet('TeacherWalking', 'assets/TeacherWalking.png');
-  game.load.spritesheet('TeacherThrowing', 'assets/TeacherThrowing.png');
+  game.load.spritesheet('playerWalking', 'assets/PlayerWalking.png', 320, 128);
+  game.load.spritesheet('playerFighting', 'assets/playerFighting.png', 576, 128);
+  game.load.spritesheet('TeacherWalking', 'assets/TeacherWalking.png', 320, 128);
+  game.load.spritesheet('TeacherThrowing', 'assets/TeacherThrowing.png', 512, 128);
   game.load.image('Paper', 'assets/Paper.png');
 }
 
