@@ -24,17 +24,13 @@ function create() {
   // a simple background for the game
   game.add.sprite(0, 0, 'background');
   //the platforms group contains the ground and the 2 ledges we can jump on
-  platforms = game.add.group();
+
   //we will enable physics for any object that is created in this group
-  platforms.enableBody = true;
+
   //here we create the ground
-  var ground = platforms.create(0, game.world.height - 84, 'ground');
+  game.add.sprite(150, 40, 'ground');
   //this stops it from falling away when you jump on it
   ground.body.immovable = true;
-  var ledge = platforms.create(400, 400, 'ground');
-  ledge.body.immovable = true;
-  ledge = platforms.create(-150, 250, 'ground');
-  ledge.body.immovable = true;
 
   //Phaser built in Keyboard manager
   cursors = game.input.keyboard.createCursorKeys();
