@@ -29,7 +29,17 @@ function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
   // a simple background for the game
   game.add.sprite(0, 0, 'background');
+
+  //the platforms group contains the ground and the 2 ledges we can jump on
+
+  //we will enable physics for any object that is created in this group
+
+  //here we create the ground
+  game.add.sprite(150, 40, 'ground');
+  //this stops it from falling away when you jump on it
+
   ground = game.add.sprite(600, 0, 'ground');
+
   ground.body.immovable = true;
 
   player = game.add.sprite(64, game.world.height - 150, 'player');
@@ -94,5 +104,5 @@ function update() {
     }
   }
 
-  
+
 }
