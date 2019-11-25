@@ -6,14 +6,11 @@ var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'theGame', {
 
 var player;
 var ground;
-<<<<<<< HEAD
-=======
 
 var MAX_HEALTH = 3;
 var health = MAX_HEALTH;
 var healthIcons = [];
 var healthPickup;
->>>>>>> 5555df05da94ded6153ee51e4005fcfc24394f23
 
 function preload() {
 
@@ -32,7 +29,7 @@ function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
   // a simple background for the game
   game.add.sprite(0, 0, 'background');
-<<<<<<< HEAD
+
   //the platforms group contains the ground and the 2 ledges we can jump on
 
   //we will enable physics for any object that is created in this group
@@ -40,9 +37,9 @@ function create() {
   //here we create the ground
   game.add.sprite(150, 40, 'ground');
   //this stops it from falling away when you jump on it
-=======
+
   ground = game.add.sprite(600, 0, 'ground');
->>>>>>> 5555df05da94ded6153ee51e4005fcfc24394f23
+
   ground.body.immovable = true;
 
   player = game.add.sprite(64, game.world.height - 150, 'player');
@@ -107,5 +104,5 @@ function update() {
     }
   }
 
-  
+
 }
